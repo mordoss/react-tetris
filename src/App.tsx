@@ -42,7 +42,11 @@ const App: React.FC = () => {
     }
   };
 
-  const keyUp = ({ keyCode }: { keyCode: number }): void => {};
+  const keyUp = ({ keyCode }: { keyCode: number }): void => {
+    if (keyCode === 40) {
+      setDropTime(1000);
+    }
+  };
 
   return (
     <StyledTetrisWrapper
