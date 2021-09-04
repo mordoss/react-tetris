@@ -6,7 +6,6 @@ type Props = {
   color: string;
 };
 
-// refactore colors data
 export const StyledCell = styled.div<Props>`
   width: auto;
   background: rgba(${(props) => props.color}, 0.8);
