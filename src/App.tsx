@@ -1,4 +1,6 @@
 import { useState, useRef } from 'react';
+// @ts-ignore
+import AnimatedBg from 'react-animated-bg';
 
 import Display from './components/Display';
 import Stage from './components/Stage';
@@ -9,6 +11,7 @@ import { useGameStatus } from './hooks/useGameStatus';
 import { useInterval } from './hooks/useInterval';
 import { usePlayer } from './hooks/usePlayer';
 import { useStage } from './hooks/useStage';
+import { imagesList, ROWSPERLEVEL } from './setup';
 import { StyledTetrisWrapper, StyledTetris } from './styled/wrappers';
 
 const App: React.FC = () => {
@@ -70,7 +73,7 @@ const App: React.FC = () => {
   };
 
   const drop = (): void => {
-    if (rows > level * 10) {
+    if (rows > level * ROWSPERLEVEL) {
       setLevel((prev) => prev + 1);
       setDropTime(1000 / level + 200);
     }
@@ -99,25 +102,32 @@ const App: React.FC = () => {
       onKeyUp={keyUp}
       ref={gameArea}
     >
-      <StyledTetris>
-        {
-          <div className="display">
-            {gameOver ? (
-              <>
-                <Display text="Game Over" gameOver={gameOver} />
-                <StartButton callback={handleStartGame} />
-              </>
-            ) : (
-              <>
-                <Display text={`Score: ${score}`} />
-                <Display text={`Rows: ${rows}`} />
-                <Display text={`Level: ${level}`} />
-              </>
-            )}
-          </div>
-        }
-        <Stage stage={stage} />
-      </StyledTetris>
+      <AnimatedBg
+        colors={imagesList}
+        duration={6}
+        delay={15}
+        timingFunction="ease-out"
+      >
+        <StyledTetris>
+          {
+            <div className="display">
+              {gameOver ? (
+                <>
+                  <Display text="Kraj" gameOver={gameOver} />
+                  <StartButton callback={handleStartGame} />
+                </>
+              ) : (
+                <>
+                  <Display text={`Rezultat: ${score}`} />
+                  <Display text={`Redova: ${rows}`} />
+                  <Display text={`Nivo: ${level}`} />
+                </>
+              )}
+            </div>
+          }
+          <Stage stage={stage} />
+        </StyledTetris>
+      </AnimatedBg>
     </StyledTetrisWrapper>
   );
 };

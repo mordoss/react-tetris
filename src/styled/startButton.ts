@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledStartButton = styled.button`
   box-sizing: border-box;
   margin: 0 0 20px 0;
-  padding: 20px;
+  padding: 1rem;
   min-height: 20px;
   width: 170px;
   border-radius: 10px;

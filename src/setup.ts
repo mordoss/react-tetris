@@ -1,15 +1,23 @@
 const STAGE_WIDTH = 12;
 const STAGE_HEIGHT = 20;
 const ROWPOINTS = [40, 100, 300, 1200];
+const ROWSPERLEVEL = 10;
 const COLORS = {
-  green: '48, 211, 56',
-  blue: '36, 95, 223',
-  lightBlue: '135,206,235',
-  ocher: '223, 173, 36',
+  green: '112, 162, 136',
+  blue: '3, 29, 68',
+  lightBlue: '4,57,94',
+  ocher: '218, 183, 133',
   yellow: '223, 217, 36',
-  violet: '132, 61, 198',
-  red: '227, 78, 78',
+  violet: '91, 77, 71',
+  red: '213, 137, 111',
 };
+
+const imagesList = [
+  'url("https://images.dog.ceo/breeds/labrador/n02099712_3503.jpg")',
+  'url("https://images.dog.ceo/breeds/labrador/n02099712_5844.jpg")',
+  'url("https://images.dog.ceo/breeds/labrador/n02099712_7481.jpg")',
+  'url("https://images.dog.ceo/breeds/labrador/n02099712_7414.jpg")',
+];
 
 const TETROMINOS = {
   0: { shape: [[0]], color: '0, 0, 0' },
@@ -71,4 +79,11 @@ const TETROMINOS = {
   },
 };
 
-export { TETROMINOS, STAGE_HEIGHT, STAGE_WIDTH, ROWPOINTS };
+export {
+  TETROMINOS,
+  STAGE_HEIGHT,
+  STAGE_WIDTH,
+  ROWPOINTS,
+  ROWSPERLEVEL,
+  imagesList,
+};

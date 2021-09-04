@@ -40,6 +40,7 @@ export const useStage = (player: Player, resetPlayer: () => void) => {
         row.forEach((value, x) => {
           if (value !== 0) {
             newStage[player.pos.y + y][player.pos.x + x] = [
+              // @ts-ignore
               value,
               `${player.collided ? 'merged' : 'clear'}`,
             ];
