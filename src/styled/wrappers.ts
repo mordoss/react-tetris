@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
+// height need to be fixed
 const StyledTetrisWrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
   outline: none;
-  div {
-    background-size: cover;
-    height: 100%;
-  }
+  background: linear-gradient(to right, #1d4350, #a43931);
 `;
 
 const StyledTetris = styled.div`

@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
-// @ts-ignore
-import AnimatedBg from 'react-animated-bg';
 
 import Display from './components/Display';
+import Leaderboard from './components/Leaderboard';
+import ScorePrompt from './components/ScorePrompt';
 import Stage from './components/Stage';
 import StartButton from './components/StartButton';
 
@@ -11,7 +11,7 @@ import { useGameStatus } from './hooks/useGameStatus';
 import { useInterval } from './hooks/useInterval';
 import { usePlayer } from './hooks/usePlayer';
 import { useStage } from './hooks/useStage';
-import { imagesList, ROWSPERLEVEL } from './setup';
+import { ROWSPERLEVEL } from './setup';
 import { StyledTetrisWrapper, StyledTetris } from './styled/wrappers';
 
 const App: React.FC = () => {
@@ -82,7 +82,6 @@ const App: React.FC = () => {
       updatePlayer({ x: 0, y: 1, collided: false });
     } else {
       if (player.pos.y < 1) {
-        console.log(player.pos.y);
         setGameOver(true);
         setDropTime(null);
       }
@@ -102,32 +101,27 @@ const App: React.FC = () => {
       onKeyUp={keyUp}
       ref={gameArea}
     >
-      <AnimatedBg
-        colors={imagesList}
-        duration={6}
-        delay={15}
-        timingFunction="ease-out"
-      >
-        <StyledTetris>
-          {
-            <div className="display">
-              {gameOver ? (
-                <>
-                  <Display text="Kraj" gameOver={gameOver} />
-                  <StartButton callback={handleStartGame} />
-                </>
-              ) : (
-                <>
-                  <Display text={`Rezultat: ${score}`} />
-                  <Display text={`Redova: ${rows}`} />
-                  <Display text={`Nivo: ${level}`} />
-                </>
-              )}
-            </div>
-          }
-          <Stage stage={stage} />
-        </StyledTetris>
-      </AnimatedBg>
+      <StyledTetris>
+        <Leaderboard />
+        {
+          <div className="display">
+            {gameOver ? (
+              <>
+                <ScorePrompt score={score} />
+                <Display text="Kraj" gameOver={gameOver} />
+                <StartButton callback={handleStartGame} />
+              </>
+            ) : (
+              <>
+                <Display text={`Rezultat: ${score}`} />
+                <Display text={`Redova: ${rows}`} />
+                <Display text={`Nivo: ${level}`} />
+              </>
+            )}
+          </div>
+        }
+        <Stage stage={stage} />
+      </StyledTetris>
     </StyledTetrisWrapper>
   );
 };
